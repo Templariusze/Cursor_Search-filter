@@ -1,0 +1,19 @@
+{
+  "layers": ["domain", "application", "infrastructure", "presentation"],
+  "principles": [
+    "Separate domain logic from UI and persistence",
+    "Use DTOs/view models to isolate layers",
+    "Idempotent commands for critical operations",
+    "Transactions for multi-entity updates",
+    "Audit log on create/update/delete where applicable",
+    "Role-based access checks near boundaries",
+    "Deterministic behavior; avoid hidden side effects"
+  ],
+  "patterns": {
+    "repository": true,
+    "service": true,
+    "unitOfWork": true,
+    "validation": "input validation at boundaries"
+  }
+}
+

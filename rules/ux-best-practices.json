@@ -1,0 +1,26 @@
+{
+  "heuristics": [
+    "Visibility of system status",
+    "Match between system and the real world",
+    "User control and freedom",
+    "Consistency and standards",
+    "Error prevention",
+    "Recognition rather than recall",
+    "Flexibility and efficiency of use",
+    "Aesthetic and minimalist design",
+    "Help users recognize, diagnose, and recover from errors",
+    "Help and documentation"
+  ],
+  "a11y_basics": [
+    "Sufficient color contrast (AA/AAA as defined)",
+    "Clear focus states and keyboard operability",
+    "Descriptive labels and alt text",
+    "Avoid using color alone to convey meaning"
+  ],
+  "microcopy": [
+    "Use action-oriented labels",
+    "Avoid ambiguity and jargon",
+    "Keep it concise; one idea per line"
+  ]
+}
+

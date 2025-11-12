@@ -1,0 +1,43 @@
+name: Figma Token Sync
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install (no deps required)
+        run: node -v
+      - name: Check drift
+        env:
+          REMOTE_TOKENS_URL: ${{ secrets.REMOTE_TOKENS_URL }}
+          REMOTE_TOKENS_FILE: ${{ secrets.REMOTE_TOKENS_FILE }}
+        run: |
+          set -e
+          node scripts/figma-sync-agent.mjs check || echo "drift_or_error=$?" >> $GITHUB_OUTPUT
+      - name: Apply update
+        if: always()
+        env:
+          REMOTE_TOKENS_URL: ${{ secrets.REMOTE_TOKENS_URL }}
+          REMOTE_TOKENS_FILE: ${{ secrets.REMOTE_TOKENS_FILE }}
+        run: |
+          node scripts/figma-sync-agent.mjs apply || true
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'chore(tokens): sync FOX tokens'
+          title: 'chore(tokens): sync FOX tokens'
+          body: 'Automated sync from Figma (manual dispatch).'
+          branch: 'chore/figma-token-sync'
+          signoff: false
+
+

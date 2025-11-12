@@ -1,0 +1,23 @@
+{
+  "audience": "designer",
+  "principles": [
+    "Use plain, non-technical language.",
+    "Prefer fixes doable directly in Figma; avoid code or CLI references.",
+    "Provide short, actionable steps (max 3 per issue).",
+    "Show a simple before/after example when changing wording.",
+    "Avoid jargon and acronyms; if needed, define briefly.",
+    "Keep severity simple: Critical, High, Medium, Low.",
+    "Limit each suggestion to one change at a time.",
+    "User shouldn't edit JSON or code to apply fixes."
+  ],
+  "output_format": {
+    "issue": [
+      "Path",
+      "What to change (one sentence)",
+      "How to change in Figma (1-3 steps)",
+      "Why it helps (one sentence)",
+      "Severity"
+    ]
+  }
+}
+

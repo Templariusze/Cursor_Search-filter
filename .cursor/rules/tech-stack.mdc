@@ -1,0 +1,121 @@
+---
+description: Technology stack, dependency versions, and configuration requirements
+globs: package.json, **/package.json, **/*.config.*, **/tsconfig*.json
+alwaysApply: true
+---
+
+- **Stack Overview**
+  - **Monorepo Structure:** Root workspace with separate prototype application
+  - **Runtime:** Node.js >=18 (ES Modules)
+  - **Frontend Framework:** React 18.3.1 with TypeScript 5.4.5
+  - **Build Tool:** Vite 5.2.0
+  - **Module System:** ES Modules (ESM) throughout
+
+- **Root Workspace Dependencies**
+  - **Node.js:** >=18 (defined in [package.json](mdc:package.json) engines)
+  - **Module Type:** ES Modules (`"type": "module"`)
+  - **Scripts:** Node.js native modules (fs, path, crypto, process, url)
+  - **No external npm dependencies** - uses Node.js built-ins only
+
+- **Prototype Application Dependencies** ([prototype/package.json](mdc:prototype/package.json))
+  - **React:** ^18.3.1
+  - **React DOM:** ^18.3.1
+  - **TypeScript:** ^5.4.5
+  - **Vite:** ^5.2.0
+  - **@vitejs/plugin-react:** ^4.3.1
+
+- **TypeScript Configuration** ([prototype/tsconfig.json](mdc:prototype/tsconfig.json))
+  - **Target:** ES2020
+  - **Lib:** ES2020, DOM, DOM.Iterable
+  - **JSX:** react-jsx (automatic JSX transform)
+  - **Module:** ESNext
+  - **Module Resolution:** Bundler (Vite-compatible)
+  - **Strict Mode:** Enabled
+  - **Additional Options:**
+    - `noEmit: true` - Type checking only, Vite handles compilation
+    - `esModuleInterop: true` - CommonJS/ESM interop
+    - `resolveJsonModule: true` - Import JSON files
+    - `isolatedModules: true` - Required for Vite
+    - `skipLibCheck: true` - Faster compilation
+
+- **Build Configuration** ([prototype/vite.config.ts](mdc:prototype/vite.config.ts))
+  - **Plugin:** @vitejs/plugin-react
+  - **Module System:** ES Modules
+  - **Dev Server:** Vite dev server (default configuration)
+
+- **TypeScript Node Configuration** ([prototype/tsconfig.node.json](mdc:prototype/tsconfig.node.json))
+  - **Purpose:** Type checking for Node.js scripts (vite.config.ts)
+  - **Module:** ESNext
+  - **Module Resolution:** Bundler
+  - **Types:** node
+
+- **Version Constraints**
+  ```json
+  {
+    "node": ">=18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.0",
+    "@vitejs/plugin-react": "^4.3.1"
+  }
+  ```
+
+- **Development Scripts**
+  - **Root:** `npm run sync:check` and `npm run sync:apply` (Figma sync operations)
+  - **Prototype:** `npm run dev`, `npm run build`, `npm run preview`
+  - All scripts run from their respective directories
+
+- **Module System Requirements**
+  - **ES Modules Only:** Both root and prototype use `"type": "module"`
+  - **Import Syntax:** Use `import`/`export`, not `require`/`module.exports`
+  - **File Extensions:** Use `.mjs` for Node scripts, `.ts`/`.tsx` for TypeScript
+  - **Node.js Scripts:** Use `fileURLToPath` and `import.meta.url` instead of `__dirname`/`__filename`
+
+- **TypeScript Best Practices**
+  - **Strict Mode:** Always enabled - ensures type safety
+  - **JSX Transform:** Use automatic JSX transform (`react-jsx`) - no need to import React in every file
+  - **Type Definitions:** Include `@types/react` and `@types/react-dom` for React types
+  - **Module Resolution:** Use `Bundler` resolution for Vite compatibility
+
+- **React Version Features**
+  - **React 18.3.1** includes:
+    - Automatic batching
+    - Concurrent features (Suspense, transitions)
+    - New hooks (useId, useTransition, useDeferredValue)
+    - Improved TypeScript support
+
+- **Vite Configuration Patterns**
+  ```typescript
+  // ✅ DO: Use defineConfig for type safety
+  import { defineConfig } from 'vite'
+  import react from '@vitejs/plugin-react'
+  
+  export default defineConfig({
+    plugins: [react()],
+  })
+  ```
+
+- **Dependency Management**
+  - **Root:** No npm dependencies - pure Node.js scripts
+  - **Prototype:** Managed via [prototype/package.json](mdc:prototype/package.json)
+  - **Version Strategy:** Use caret (^) for minor/patch updates
+  - **Lock Files:** Use package-lock.json (if present) for reproducible builds
+
+- **When Adding Dependencies**
+  - **React Components:** Add to `prototype/package.json`
+  - **Build Tools:** Add to `prototype/package.json` devDependencies
+  - **Node Scripts:** Consider if dependency is needed or can use Node.js built-ins
+  - **Type Definitions:** Always include `@types/*` packages for TypeScript support
+
+- **Compatibility Notes**
+  - **Node.js 18+:** Required for ES Modules and modern Node.js features
+  - **React 18:** Uses automatic JSX transform - no React import needed in components
+  - **TypeScript 5.4+:** Supports latest language features and improved type inference
+  - **Vite 5:** Fast HMR and optimized builds, requires ESM
+
+- **Build Output**
+  - **Development:** Vite dev server with HMR
+  - **Production:** Vite build outputs optimized bundles
+  - **Type Checking:** Separate from build (TypeScript compiler)
+  - **No Runtime Type Checking:** TypeScript types are compile-time only

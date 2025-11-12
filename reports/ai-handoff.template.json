@@ -1,0 +1,136 @@
+{
+  "meta": {
+    "featureId": "<feature-id>",
+    "version": "1.0.0",
+    "figmaNodeIds": ["<node-id>"],
+    "sourceRules": [
+      "rules/erp-rules.json#<section>",
+      "rules/ux-best-practices.json#<section>",
+      "rules/tokens.json#<section>",
+      "rules/design-rules.json#<section>"
+    ],
+    "sourceFiles": [
+      "agents/HANDOFF.md",
+      "agents/MASTER.md"
+    ],
+    "featureFlag": { "key": "<flag.key>", "defaultEnabled": false },
+    "sourceHash": "<sha256-of-context>",
+    "generatedAt": "<iso-8601>"
+  },
+  "intent": {
+    "problem": "<short problem statement>",
+    "scope": ["<in-scope item>"],
+    "nonGoals": ["<out-of-scope item>"],
+    "kpis": ["<measurable KPI>"]
+  },
+  "uiSpec": {
+    "components": [
+      {
+        "id": "<ComponentName>",
+        "type": "<type>",
+        "variant": "<variant>",
+        "props": {"<prop>": "<value>"},
+        "bindings": {"<prop>": "<domainFieldOrExpr>"},
+        "slots": [
+          {
+            "name": "header",
+            "required": false,
+            "allowedContent": ["Text", "Button"],
+            "defaultBehavior": "empty-preserves-layout",
+            "constraints": "max 2 items"
+          }
+        ]
+      }
+    ],
+    "tokens": {"<tokenGroup>": "tokens.<group>.<name>"},
+    "states": ["idle", "loading", "empty", "error"],
+    "interactions": [
+      {"event": "onApply", "target": "<ComponentName>", "debounceMs": 250, "effect": "<action/side-effect>"}
+    ],
+    "a11y": {"roles": ["<role>"], "labels": ["<aria-label>"]}
+  },
+  "contracts": {
+    "errorCatalogRef": "rules/error-catalog.json#v1",
+    "domain": [
+      {"entity": "<Entity>", "fields": ["id"], "indexes": ["id"]}
+    ],
+    "api": [
+      {
+        "method": "POST",
+        "path": "/api/<resource>",
+        "request": {"<field>": "<type>"},
+        "response": {"id": "string"},
+        "errors": [
+          "<ERROR_CODE>",
+          {"code": "<ERROR_CODE>", "httpStatus": 409, "category": "conflict", "message": "<short>"}
+        ]
+      }
+    ],
+    "migrations": [
+      {"table": "<table>", "op": "create", "columns": ["id"]}
+    ],
+    "auth": {"roles": ["<ROLE>"], "permissions": ["<PERM>"]}
+  },
+  "rules": {
+    "erp": ["<ERP constraint>"],
+    "ux": ["<UX rule>"] ,
+    "code": ["rules/code-standards.json#<section>"],
+    "design": ["Use semantic tokens only"]
+  },
+  "tests": {
+    "acceptance": [
+      {"name": "<test name>", "given": "<precondition>", "when": "<action>", "then": "<expected>"}
+    ],
+    "edgeCases": [
+      {"name": "<edge case>", "then": "<expected>"}
+    ],
+    "rollback": [
+      {"name": "<rollback step>", "condition": "<optional flag>"}
+    ]
+  },
+  "telemetry": {
+    "events": [
+      {
+        "name": "<EventName>",
+        "when": "<when it fires>",
+        "sampling": 1,
+        "properties": [
+          {"name": "<prop>", "type": "string", "pii": "none", "required": true}
+        ]
+      }
+    ]
+  },
+  "performance": {
+    "budgets": {
+      "localApplyMs": 250,
+      "remoteResponseMs": 1000,
+      "bundleBudgetKB": 20,
+      "debounceMs": 250
+    },
+    "notes": "<optional notes>"
+  },
+  "i18n": {
+    "defaultLocale": "en",
+    "keys": [
+      {
+        "key": "feature.title",
+        "description": "Title text",
+        "context": "Header title",
+        "placeholders": [{"name": "count", "example": "3"}],
+        "pluralization": {"ruleRef": "en", "categories": ["one", "other"]}
+      }
+    ]
+  },
+  "rollout": {
+    "strategy": "gradual",
+    "targetPercent": 25,
+    "segments": ["tenant:beta"],
+    "killSwitchFlag": "<flag.key>",
+    "stages": [
+      {"name": "beta", "percent": 10},
+      {"name": "wider", "percent": 50}
+    ]
+  }
+}
+
+

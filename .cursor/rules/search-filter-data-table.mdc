@@ -1,0 +1,141 @@
+---
+globs: prototype/src/**/*.tsx, prototype/src/styles.css, rules/**/*.json, reports/**/*.md
+alwaysApply: false
+---
+- **Purpose**
+  - Define a consistent, reusable “Engineering tasks”-style data table pattern used by Search&Filter.
+  - Standardize anatomy, tokens, behaviors, accessibility, and analytics so implementations converge.
+
+- **Anatomy (top → bottom)**
+  - **Breadcrumbs (optional)**: page-level navigation
+  - **Tabs row**: “All”, “By Status”, “Assigned to Me”, “More…”
+  - **Toolbar**:
+    - **Filter** (opens panel or popover)
+    - **Sort** (menu of sortable columns)
+    - **Layout** (density/columns visibility)
+    - **Search** (field with clear + debounce)
+    - **Primary action** (e.g., New)
+  - **Table**
+    - Columns: Description, Status, Priority, Assignee, Due Date, Tags
+    - Rows with: text, status badge, priority pill, avatar+name, date, tag chips
+  - **Footer (optional)**: pagination, result count
+
+- **File references**
+  - Tokens: [tokens.ts](mdc:prototype/src/tokens.ts)
+  - Components: [SearchBar.tsx](mdc:prototype/src/components/SearchBar.tsx), [FilterChip.tsx](mdc:prototype/src/components/FilterChip.tsx)
+  - Global styles: [styles.css](mdc:prototype/src/styles.css)
+
+- **Tokens and visual language**
+  - **Color**:
+    - Status badges: map to semantic tokens (e.g., success, warning, info, neutral)
+    - Priority pills: High = danger, Medium = accent, Low = subtle, Urgent = danger-strong
+    - Tags (chips): neutral background with subtle border and on-hover elevation
+  - **Spacing**:
+    - Row height: compact 40–44px, comfortable 48–56px (toggle via Layout)
+    - Cell padding: 12–16px; toolbar gap 8–12px
+  - **Typography**:
+    - Description: body/regular; Status/Priority/Tags: label/caps optional; Assignee/Due: body-secondary
+  - **Iconography**:
+    - Filter, Sort, Layout, Search, New use standard system icons
+
+- **Behavioral rules**
+  - **Search**:
+    - Debounce 250–350ms
+    - Clear button appears when non-empty
+    - Keyboard: Focus with “/”
+  - **Filter**:
+    - Persist selections per view (tab)
+    - Show count of active filters on button (e.g., “Filter (2)”)
+  - **Sort**:
+    - Single-column sort primary; allow Shift-click for multi-sort (optional)
+  - **Layout**:
+    - Density (compact/comfortable)
+    - Column visibility toggles (persist)
+  - **Selection (optional)**:
+    - Row checkbox; select all on page; bulk actions bar
+  - **Empty/loading/error states**:
+    - Loading: skeleton rows (3–5)
+    - Empty (no results): “No tasks match your filters” + Reset action
+    - Error: retry affordance + short guidance
+
+- **Accessibility**
+  - Use semantic table roles (`table`, `thead`, `tbody`, `tr`, `th`, `td`)
+  - All interactive elements reachable and operable via keyboard; visible focus
+  - Badges and chips include accessible names; do not rely on color alone
+  - Announce data updates (search/filter) with polite live region
+
+- **Responsive behavior**
+  - ≥ 1024px: full table
+  - 768–1023px: hide non-essential columns by default (Tags); provide column toggle in Layout
+  - < 768px: list view (cards) with key fields; actions moved to overflow menu
+
+- **Data model example**
+```ts
+export type TaskRow = {
+  id: string;
+  description: string;
+  status: 'Not Started' | 'In Progress' | 'Done' | 'Blocked';
+  priority: 'Low' | 'Medium' | 'High' | 'Urgent';
+  assignee: { id: string; name: string; initials: string };
+  dueDate: string; // ISO
+  tags: string[];
+};
+```
+
+- **Column config example**
+```ts
+type Column<T> = {
+  id: string;
+  header: string;
+  width?: number | string;
+  render: (row: T) => JSX.Element;
+  sort?: (a: T, b: T) => number;
+  hideOnNarrow?: boolean;
+};
+
+export const taskColumns: Column<TaskRow>[] = [
+  { id: 'description', header: 'Description', render: r => <span>{r.description}</span> },
+  { id: 'status', header: 'Status', render: r => <StatusBadge status={r.status} /> },
+  { id: 'priority', header: 'Priority', render: r => <PriorityPill level={r.priority} /> },
+  { id: 'assignee', header: 'Assignee', render: r => <AvatarWithName {...r.assignee} />, hideOnNarrow: true },
+  { id: 'due', header: 'Due Date', render: r => <DateCell iso={r.dueDate} /> },
+  { id: 'tags', header: 'Tags', render: r => <TagsCell tags={r.tags} />, hideOnNarrow: true },
+];
+```
+
+- **Interaction guidelines**
+  - Row click opens details unless the click originates on a control within the row
+  - Hover reveals inline actions (e.g., quick edit) on desktop only
+  - Keep tab order logical: toolbar → table header → rows
+
+- **Analytics (suggested)**
+  - search_performed, filter_applied/cleared, sort_changed, layout_changed
+  - row_opened, bulk_action_executed
+
+- **DO / DON’T**
+```ts
+// ✅ DO: show active filter count on the Filter button
+<ToolbarButton icon="filter">Filter (2)</ToolbarButton>
+
+// ❌ DON'T: hide filter state; it reduces clarity
+<ToolbarButton icon="filter">Filter</ToolbarButton>
+```
+
+- **Implementation checklist**
+  - Toolbar wired (Filter/Sort/Layout/Search/New)
+  - Debounced search + clear
+  - Persisted filters and column visibility
+  - Accessible table semantics + focus states
+  - Loading/empty/error states implemented
+  - Responsive behavior validated at 320px, 768px, 1024px
+
+- **Adoption**
+  - New table-like views in Search&Filter should follow this rule.
+  - Extract shared parts into primitives:
+    - `StatusBadge`, `PriorityPill`, `TagsCell`, `AvatarWithName`, `DateCell`
+    - Reuse [FilterChip.tsx](mdc:prototype/src/components/FilterChip.tsx) and [SearchBar.tsx](mdc:prototype/src/components/SearchBar.tsx)
+
+- **Maintenance**
+  - Update this rule when tokens or interaction patterns change.
+  - Add real code examples as components are implemented in `prototype/`.
+

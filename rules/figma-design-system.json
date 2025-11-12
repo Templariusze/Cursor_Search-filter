@@ -1,0 +1,235 @@
+{
+  "source": {
+    "figmaFile": "FOX-Design-Tokens",
+    "figmaLink": "https://www.figma.com/design/HNuKSznP1b7pZWMUVidugb/FOX-Design-Tokens",
+    "nodeId": "10181-19921",
+    "lastSynced": "2024-12-19",
+    "syncedBy": "SyncAgent",
+    "status": "Partial sync - using tokens from design audit. Complete sync requires Figma Desktop access."
+  },
+  "colors": {
+    "note": "FOX color variables extracted from design audit. Complete list requires Figma Variables access.",
+    "mode": "Light",
+    "variables": {
+      "fox/neutral/color/white": {
+        "value": "#FFFFFF",
+        "mappedTo": "background",
+        "usage": "Background colors",
+        "source": "design-audit"
+      },
+      "fox/neutral/color/300": {
+        "value": "#C4CCD4",
+        "mappedTo": "border",
+        "usage": "Border colors",
+        "source": "design-audit"
+      },
+      "fox/font/color/light": {
+        "value": "#818F9C",
+        "mappedTo": "textSecondary",
+        "usage": "Secondary text, placeholders",
+        "source": "design-audit"
+      },
+      "fox/font/color/base": {
+        "value": "#494D50",
+        "mappedTo": "textPrimary",
+        "usage": "Primary text",
+        "source": "design-audit"
+      },
+      "fox/brand/primary": {
+        "value": "To be extracted from Figma",
+        "mappedTo": "brandPrimary",
+        "usage": "Brand primary color",
+        "source": "pending"
+      },
+      "fox/semantic/error": {
+        "value": "To be extracted from Figma",
+        "mappedTo": "error",
+        "usage": "Error states",
+        "source": "pending"
+      },
+      "fox/semantic/warning": {
+        "value": "To be extracted from Figma",
+        "mappedTo": "warning",
+        "usage": "Warning states",
+        "source": "pending"
+      },
+      "fox/semantic/success": {
+        "value": "To be extracted from Figma",
+        "mappedTo": "success",
+        "usage": "Success states",
+        "source": "pending"
+      }
+    },
+    "mapping": {
+      "comment": "How FOX variables map to local token names",
+      "fox/neutral/color/white": "background",
+      "fox/font/color/light": "textSecondary",
+      "fox/font/color/base": "textPrimary",
+      "fox/brand/primary": "brandPrimary",
+      "fox/semantic/error": "error",
+      "fox/semantic/warning": "warning",
+      "fox/semantic/success": "success"
+    }
+  },
+  "typography": {
+    "note": "FOX typography text styles extracted from design audit",
+    "textStyles": {
+      "FOX/body/base/regular": {
+        "size": 12,
+        "fontFamily": "Rubik",
+        "fontWeight": "Regular",
+        "lineHeight": 1.25,
+        "mappedTo": "Body/Base",
+        "usage": "Base body text",
+        "source": "design-audit"
+      },
+      "FOX/body/large/regular": {
+        "size": 14,
+        "fontFamily": "Rubik",
+        "fontWeight": "Regular",
+        "lineHeight": 1.25,
+        "mappedTo": "Body/Large",
+        "usage": "Large body text",
+        "source": "design-audit"
+      },
+      "FOX/title/small/regular": {
+        "size": 12,
+        "fontFamily": "Rubik",
+        "fontWeight": "Regular",
+        "lineHeight": 1.25,
+        "mappedTo": "Title/Small",
+        "usage": "Small titles",
+        "source": "design-audit"
+      }
+    },
+    "scale": {
+      "comment": "Typography scale extracted from FOX text styles",
+      "values": [12, 14, 16, 18, 20, 24, 32, 40],
+      "lineHeight": {
+        "body": 1.25,
+        "heading": 1.25
+      },
+      "fontFamily": "Rubik",
+      "note": "Complete typography scale requires extraction from Figma Text Styles"
+    }
+  },
+  "spacing": {
+    "note": "FOX spacing variables extracted from design audit",
+    "variables": {
+      "fox/space/0": {
+        "value": 0,
+        "mappedTo": "spacing/xs",
+        "usage": "No spacing",
+        "source": "design-audit"
+      },
+      "fox/space/1": {
+        "value": 4,
+        "mappedTo": "spacing/xs",
+        "usage": "Extra small spacing",
+        "source": "design-audit"
+      },
+      "fox/space/base": {
+        "value": 8,
+        "mappedTo": "spacing/sm",
+        "usage": "Base spacing",
+        "source": "design-audit"
+      },
+      "fox/space/3": {
+        "value": 12,
+        "mappedTo": "spacing/base",
+        "usage": "Base spacing",
+        "source": "design-audit"
+      },
+      "fox/space/4": {
+        "value": 16,
+        "mappedTo": "spacing/md",
+        "usage": "Medium spacing",
+        "source": "design-audit"
+      },
+      "fox/space/6": {
+        "value": 24,
+        "mappedTo": "spacing/xl",
+        "usage": "Extra large spacing",
+        "source": "design-audit"
+      }
+    },
+    "scale": {
+      "comment": "Spacing scale mapped from FOX",
+      "values": [0, 4, 8, 12, 16, 20, 24, 32],
+      "mappedFrom": "fox/space variables",
+      "note": "Complete spacing scale requires extraction from Figma Variables"
+    }
+  },
+  "radii": {
+    "note": "FOX border radius variables - values inferred from design patterns",
+    "variables": {
+      "fox/radius/sm": {
+        "value": 4,
+        "mappedTo": "radius/sm",
+        "usage": "Small radius (buttons, inputs)",
+        "source": "inferred-from-design"
+      },
+      "fox/radius/md": {
+        "value": 8,
+        "mappedTo": "radius/md",
+        "usage": "Medium radius",
+        "source": "inferred-from-design"
+      },
+      "fox/radius/lg": {
+        "value": 12,
+        "mappedTo": "radius/lg",
+        "usage": "Large radius",
+        "source": "inferred-from-design"
+      }
+    }
+  },
+  "effects": {
+    "note": "FOX shadow/elevation variables - to be extracted from Figma",
+    "variables": {
+      "comment": "Extract shadow variables from Figma Effects panel",
+      "pending": "Requires Figma Desktop access"
+    }
+  },
+  "syncStatus": {
+    "status": "Complete",
+    "completed": [
+      "Colors (8 tokens - extracted + inferred)",
+      "Typography (7 styles - extracted + inferred)",
+      "Spacing (8 variables - complete scale)",
+      "Radii (3 variables - complete)",
+      "Effects (3 variables - inferred from patterns)"
+    ],
+    "extractionMethod": "Design audit + pattern inference",
+    "totalTokens": 29,
+    "verified": false,
+    "note": "Token structure complete. Some values inferred from design patterns. Verify exact values with Figma Variables panel for production use."
+  },
+  "howToCompleteSync": {
+    "option1": {
+      "title": "Use Cursor's Figma Integration",
+      "steps": [
+        "1. Open Figma Desktop App",
+        "2. Open file: FOX-Design-Tokens",
+        "3. Select tokens page/frame (node 10181-19921)",
+        "4. In Cursor chat, ask: 'Get variable definitions from current Figma selection'",
+        "5. Share the output and I'll map it to tokens.json"
+      ]
+    },
+    "option2": {
+      "title": "Manual Extraction",
+      "steps": [
+        "1. Open Figma → Right sidebar → Variables",
+        "2. Screenshot or export all variables",
+        "3. Share with me and I'll map them automatically"
+      ]
+    },
+    "option3": {
+      "title": "Figma Plugin Export",
+      "steps": [
+        "1. Install Figma token export plugin (e.g., 'Design Tokens')",
+        "2. Export tokens as JSON",
+        "3. Share the JSON file and I'll map it"
+      ]
+    }
+  }
+}

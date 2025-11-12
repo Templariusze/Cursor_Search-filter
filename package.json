@@ -1,0 +1,14 @@
+{
+  "name": "search-filter-monorepo",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "sync:check": "node scripts/figma-sync-agent.mjs check",
+    "sync:apply": "node scripts/figma-sync-agent.mjs apply"
+  }
+}
+
+

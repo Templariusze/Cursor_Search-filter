@@ -1,0 +1,361 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/handoff-schema.json",
+  "title": "AI Handoff Document Schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["meta", "intent", "uiSpec", "contracts", "rules", "tests"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["featureId", "version", "figmaNodeIds", "sourceRules"],
+      "properties": {
+        "featureId": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "figmaNodeIds": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "sourceRules": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "sourceFiles": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "featureFlag": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["key"],
+          "properties": {
+            "key": { "type": "string" },
+            "defaultEnabled": { "type": "boolean" }
+          }
+        },
+        "sourceHash": { "type": "string" },
+        "generatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["problem", "scope", "nonGoals", "kpis"],
+      "properties": {
+        "problem": { "type": "string", "minLength": 1 },
+        "scope": { "type": "array", "items": { "type": "string" } },
+        "nonGoals": { "type": "array", "items": { "type": "string" } },
+        "kpis": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "uiSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["components", "tokens", "states", "interactions", "a11y"],
+      "properties": {
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "type", "props"],
+            "properties": {
+              "id": { "type": "string" },
+              "type": { "type": "string" },
+              "variant": { "type": "string" },
+              "props": { "type": "object" },
+              "bindings": { "type": "object" },
+              "slots": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["name"],
+                  "properties": {
+                    "name": { "type": "string" },
+                    "required": { "type": "boolean" },
+                    "allowedContent": { "type": "array", "items": { "type": "string" } },
+                    "defaultBehavior": { "type": "string" },
+                    "constraints": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tokens": { "type": "object" },
+        "states": { "type": "array", "items": { "type": "string" } },
+        "interactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["event"],
+            "properties": {
+              "event": { "type": "string" },
+              "target": { "type": "string" },
+              "debounceMs": { "type": "number", "minimum": 0 },
+              "guard": { "type": "string" },
+              "effect": { "type": "string" }
+            }
+          }
+        },
+        "a11y": { "type": "object" }
+      }
+    },
+    "contracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "api", "migrations", "auth"],
+      "properties": {
+        "errorCatalogRef": { "type": "string" },
+        "domain": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["entity", "fields"],
+            "properties": {
+              "entity": { "type": "string" },
+              "fields": {
+                "type": "array",
+                "items": { "type": "string" },
+                "minItems": 1
+              },
+              "indexes": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "api": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["method", "path", "request", "response"],
+            "properties": {
+              "method": { "type": "string", "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"] },
+              "path": { "type": "string" },
+              "request": { "type": "object" },
+              "response": { "type": "object" },
+              "errors": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    { "type": "string" },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": ["code"],
+                      "properties": {
+                        "code": { "type": "string" },
+                        "httpStatus": { "type": "integer" },
+                        "category": {
+                          "type": "string",
+                          "enum": ["validation", "auth", "conflict", "rate_limit", "server", "network"]
+                        },
+                        "message": { "type": "string" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "migrations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["table", "op"],
+            "properties": {
+              "table": { "type": "string" },
+              "op": { "type": "string", "enum": ["create", "alter", "drop"] },
+              "columns": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "auth": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "roles": { "type": "array", "items": { "type": "string" } },
+            "permissions": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["erp", "ux", "code", "design"],
+      "properties": {
+        "erp": { "type": "array", "items": { "type": "string" } },
+        "ux": { "type": "array", "items": { "type": "string" } },
+        "code": { "type": "array", "items": { "type": "string" } },
+        "design": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "tests": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["acceptance", "edgeCases", "rollback"],
+      "properties": {
+        "acceptance": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "given", "when", "then"],
+            "properties": {
+              "name": { "type": "string" },
+              "given": { "type": "string" },
+              "when": { "type": "string" },
+              "then": { "type": "string" }
+            }
+          }
+        },
+        "edgeCases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "then"],
+            "properties": {
+              "name": { "type": "string" },
+              "then": { "type": "string" }
+            }
+          }
+        },
+        "rollback": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "condition": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "telemetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "when"],
+            "properties": {
+              "name": { "type": "string" },
+              "when": { "type": "string" },
+              "sampling": { "type": "number", "minimum": 0, "maximum": 1 },
+              "properties": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["name", "type"],
+                  "properties": {
+                    "name": { "type": "string" },
+                    "type": { "type": "string" },
+                    "pii": { "type": "string", "enum": ["none", "user_id", "email", "free_text", "sensitive"] },
+                    "required": { "type": "boolean" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "budgets": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "localApplyMs": { "type": "integer", "minimum": 0 },
+            "remoteResponseMs": { "type": "integer", "minimum": 0 },
+            "bundleBudgetKB": { "type": "integer", "minimum": 0 },
+            "debounceMs": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "i18n": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "defaultLocale": { "type": "string" },
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["key"],
+            "properties": {
+              "key": { "type": "string" },
+              "description": { "type": "string" },
+              "context": { "type": "string" },
+              "placeholders": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["name"],
+                  "properties": {
+                    "name": { "type": "string" },
+                    "example": { "type": "string" }
+                  }
+                }
+              },
+              "pluralization": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "ruleRef": { "type": "string" },
+                  "categories": { "type": "array", "items": { "type": "string" } }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "rollout": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "strategy": { "type": "string", "enum": ["canary", "gradual", "toggle"] },
+        "targetPercent": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "segments": { "type": "array", "items": { "type": "string" } },
+        "killSwitchFlag": { "type": "string" },
+        "stages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string" },
+              "percent": { "type": "integer", "minimum": 0, "maximum": 100 }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+

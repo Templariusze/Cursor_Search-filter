@@ -1,0 +1,70 @@
+{
+  "contrast": {
+    "wcag": "AA",
+    "bodyMinRatio": 4.5,
+    "largeMinRatio": 3.0
+  },
+  "severity": {
+    "contrastFail": "Critical",
+    "wrongComponentVariant": "High",
+    "offScaleTypography": "High",
+    "spacingDeviation": "Medium",
+    "minorInconsistency": "Low"
+  },
+  "components": {
+    "Button": {
+      "allowedVariants": ["primary", "secondary", "danger"],
+      "minHeight": 44
+    },
+    "Input": {
+      "minHeight": 44
+    }
+  },
+  "variables": {
+    "modes": {
+      "theme": ["light", "dark"],
+      "density": ["comfortable", "compact"],
+      "state": ["default", "hover", "focus", "disabled", "error"]
+    },
+    "policy": {
+      "noHardCodedValues": true,
+      "requiredForComponents": ["Button", "Input", "Card", "Dialog", "ListItem"],
+      "namespacing": "kebab-case or slash-separated groups (e.g., color/background/base)",
+      "devModeExport": true
+    }
+  },
+  "slots": {
+    "naming": {
+      "allowed": ["header", "media", "body", "footer", "actions"],
+      "case": "camelCase",
+      "parityWithCode": true
+    },
+    "limits": {
+      "maxPerComponent": 4,
+      "minPerComponent": 0,
+      "keepSimpleForAtomic": true
+    },
+    "defaults": {
+      "required": false,
+      "fallbackContent": "empty",
+      "preserveLayout": true
+    },
+    "constraints": {
+      "allowedContentBySlot": {
+        "actions": ["Button", "IconButton", "Menu"],
+        "header": ["Heading", "Breadcrumbs", "Meta"],
+        "media": ["Image", "Avatar", "Illustration"],
+        "body": ["Text", "List", "FormFields"],
+        "footer": ["Text", "Pagination", "SecondaryActions"]
+      },
+      "disallowInteractiveInHeader": true,
+      "enforceTouchTargetsInActions": true
+    },
+    "audit": {
+      "checkPresentFor": ["Card", "Dialog", "PageLayout", "ListItem"],
+      "checkEmptySlotsDoNotBreakLayout": true,
+      "checkNamingMatchesCode": true
+    }
+  }
+}
+

@@ -1,0 +1,79 @@
+{
+  "languages": ["TypeScript", "JavaScript", "Python", "C#", "SQL"],
+  "naming": {
+    "functions": "verbs or verb phrases",
+    "variables": "descriptive nouns, no 1-2 letter names",
+    "constants": "UPPER_SNAKE_CASE when appropriate"
+  },
+  "ts": {
+    "strict": true,
+    "noAny": true,
+    "publicApisAnnotated": true
+  },
+  "controlFlow": {
+    "earlyReturns": true,
+    "avoidDeepNesting": true,
+    "noUselessTryCatch": true
+  },
+  "a11y": {
+    "labels": true,
+    "roles": true,
+    "focusStates": true,
+    "contrast": "AA minimum"
+  },
+  "testing": {
+    "unit": true,
+    "criticalPaths": true,
+    "accessibilityChecks": true
+  },
+  "errorHandling": {
+    "noSilentCatch": true,
+    "userFriendlyMessages": true,
+    "structuredLogging": true
+  },
+  "performance": {
+    "avoidNPlusOne": true,
+    "memoizeHotPaths": true,
+    "lazyLoadHeavy": true
+  },
+  "components": {
+    "slots": {
+      "naming": {
+        "slots": ["header", "media", "body", "footer", "actions"],
+        "case": "camelCase",
+        "matchDesign": true
+      },
+      "react": {
+        "patterns": ["children", "namedProps", "compoundComponents", "slotsObject"],
+        "examples": {
+          "props": ["header?: ReactNode", "actions?: ReactNode", "children?: ReactNode"],
+          "compound": ["Card.Header", "Card.Body", "Card.Actions"]
+        },
+        "defaults": {
+          "renderEmptyKeepsLayout": true
+        },
+        "constraints": {
+          "validateAllowedTypesAtRuntime": false,
+          "documentAllowedContent": true
+        },
+        "a11y": {
+          "landmarks": {
+            "header": "heading",
+            "actions": "group"
+          },
+          "focusOrderRespectsLayout": true
+        }
+      }
+    },
+    "codeConnect": {
+      "requiredFor": ["Button", "Input", "Card", "Dialog", "ListItem"],
+      "namingParity": true,
+      "map": "Figma component → code path (e.g., src/components/Card.tsx)",
+      "events": {
+        "naming": "on<EventName> (e.g., onClick, onSelect)",
+        "parityWithFigmaActions": true
+      }
+    }
+  }
+}
+

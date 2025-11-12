@@ -1,0 +1,31 @@
+{
+  "mode": "deliberation",
+  "turns": {
+    "order": [
+      "WordingAgent",
+      "DesignRulesAgent",
+      "AccessibilityAgent",
+      "LocalizationAgent",
+      "AnalyticsAgent",
+      "CheckAgent",
+      "CodeExpertAgent"
+    ],
+    "maxRounds": 2,
+    "perTurnLimit": 4
+  },
+  "principles": [
+    "One change at a time; keep proposals minimal.",
+    "Cite specific rules/tokens when proposing changes.",
+    "Prefer fixes doable in Figma; include plain steps.",
+    "If conflict, CheckAgent applies tie-breakers (ERP efficiency, AA contrast, domain precision).",
+    "CodeExpertAgent ensures implementability and minimal scope."
+  ],
+  "stopConditions": [
+    "CheckAgent issues a decision with rationale.",
+    "No new objections in the last round."
+  ],
+  "outputs": {
+    "decisionLog": "reports/decision-log.md"
+  }
+}
+

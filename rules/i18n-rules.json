@@ -1,0 +1,23 @@
+{
+  "placeholders": {
+    "format": "{name}",
+    "noConcatenation": true
+  },
+  "expansion": {
+    "short": 0.3,
+    "long": 0.5
+  },
+  "plurals": {
+    "avoidHardcoded": true,
+    "recommend": "singular/plural neutral phrasing when possible"
+  },
+  "rtl": {
+    "mirrorIcons": true,
+    "avoidDirectionalWords": true
+  },
+  "formats": {
+    "noLocaleSpecific": true,
+    "preferNeutral": true
+  }
+}
+

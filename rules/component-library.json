@@ -1,0 +1,207 @@
+{
+  "componentLibrary": {
+    "structure": {
+      "pages": [
+        "Tokens & Variables",
+        "Components/Primitives",
+        "Components/Forms",
+        "Components/Navigation",
+        "Components/Feedback",
+        "Components/Data Display",
+        "Components/Layout",
+        "Patterns",
+        "Playground"
+      ],
+      "namingConvention": "ComponentName/Variant/State",
+      "examples": [
+        "Button/Primary/Default",
+        "Button/Primary/Hover",
+        "Input/Text/Default",
+        "Input/Text/Error",
+        "Dropdown/Single/Open"
+      ]
+    },
+    "requiredComponents": {
+      "Button": {
+        "variants": ["primary", "secondary", "danger"],
+        "states": ["default", "hover", "active", "disabled", "focus"],
+        "minHeight": 44,
+        "usesTokens": {
+          "colors": ["brandPrimary", "textPrimary", "textSecondary", "error"],
+          "typography": ["Body/Base", "Body/Large"],
+          "spacing": ["spacing/md"],
+          "radius": ["radius/sm"]
+        }
+      },
+      "Input": {
+        "variants": ["text", "email", "number", "password", "search"],
+        "states": ["default", "focus", "error", "disabled"],
+        "minHeight": 44,
+        "usesTokens": {
+          "colors": ["textSecondary", "error", "background"],
+          "typography": ["Body/Base"],
+          "spacing": ["spacing/md"],
+          "radius": ["radius/sm"]
+        }
+      },
+      "Dropdown": {
+        "variants": ["single", "multiple"],
+        "states": ["default", "open", "focus", "disabled"],
+        "minHeight": 44,
+        "usesTokens": {
+          "colors": ["textSecondary", "background"],
+          "typography": ["Body/Base"],
+          "spacing": ["spacing/md"],
+          "radius": ["radius/sm"]
+        }
+      },
+      "SearchBar": {
+        "variants": ["default"],
+        "states": ["default", "focus", "withResults"],
+        "minHeight": 44,
+        "usesTokens": {
+          "colors": ["textSecondary", "background"],
+          "typography": ["Body/Base"],
+          "spacing": ["spacing/base", "spacing/md"],
+          "radius": ["radius/sm"]
+        }
+      },
+      "FilterChip": {
+        "variants": ["active", "inactive"],
+        "states": ["default", "hover", "removable"],
+        "minHeight": 32,
+        "usesTokens": {
+          "colors": ["brandPrimary", "textPrimary", "textSecondary"],
+          "typography": ["Body/Base"],
+          "spacing": ["spacing/sm", "spacing/base"],
+          "radius": ["radius/md"]
+        }
+      }
+    },
+    "componentProperties": {
+      "standardProperties": [
+        {
+          "name": "Variant",
+          "type": "VARIANT",
+          "values": "From design-rules.json allowedVariants"
+        },
+        {
+          "name": "State",
+          "type": "VARIANT",
+          "values": ["default", "hover", "active", "disabled", "focus", "loading"]
+        },
+        {
+          "name": "Size",
+          "type": "VARIANT",
+          "values": ["small", "medium", "large"],
+          "optional": true
+        }
+      ],
+      "metadataProperties": [
+        {
+          "name": "Status",
+          "type": "TEXT",
+          "values": ["Stable", "Beta", "Deprecated"],
+          "usage": "Component description field"
+        },
+        {
+          "name": "Version",
+          "type": "TEXT",
+          "usage": "Component description field"
+        }
+      ]
+    },
+    "tokenMapping": {
+      "colors": {
+        "source": "rules/tokens.json",
+        "figmaVariableMode": "Light",
+        "mapping": {
+          "background": "background",
+          "textPrimary": "textPrimary",
+          "textSecondary": "textSecondary",
+          "brandPrimary": "brandPrimary",
+          "brandPrimaryContrast": "brandPrimaryContrast",
+          "error": "error",
+          "warning": "warning",
+          "success": "success"
+        }
+      },
+      "typography": {
+        "source": "rules/tokens.json",
+        "figmaTextStyles": {
+          "Body/Base": {
+            "size": 14,
+            "lineHeight": 1.5,
+            "weight": "Regular"
+          },
+          "Body/Large": {
+            "size": 16,
+            "lineHeight": 1.5,
+            "weight": "Regular"
+          },
+          "Heading/Small": {
+            "size": 18,
+            "lineHeight": 1.25,
+            "weight": "Regular"
+          },
+          "Heading/Medium": {
+            "size": 24,
+            "lineHeight": 1.25,
+            "weight": "Regular"
+          }
+        }
+      },
+      "spacing": {
+        "source": "rules/tokens.json",
+        "figmaVariables": {
+          "spacing/xs": 4,
+          "spacing/sm": 8,
+          "spacing/base": 12,
+          "spacing/md": 16,
+          "spacing/lg": 20,
+          "spacing/xl": 24,
+          "spacing/2xl": 32
+        }
+      },
+      "radii": {
+        "source": "rules/tokens.json",
+        "figmaVariables": {
+          "radius/sm": 4,
+          "radius/md": 8,
+          "radius/lg": 12
+        }
+      }
+    },
+    "validation": {
+      "designRulesAgent": {
+        "checks": [
+          "Component uses variables (not hardcoded values)",
+          "Variants match design-rules.json allowedVariants",
+          "Meets minimum height requirements",
+          "WCAG AA contrast compliance",
+          "Typography matches token scale",
+          "Spacing uses token scale"
+        ]
+      },
+      "checklist": [
+        "Uses design tokens for all properties",
+        "Meets minimum touch target (44px)",
+        "Has all required states",
+        "Meets contrast requirements",
+        "Follows naming convention",
+        "Documented with usage examples"
+      ]
+    },
+    "documentation": {
+      "requiredFields": [
+        "Component name and description",
+        "Variants and states grid",
+        "Token usage table",
+        "Specifications (height, accessibility)",
+        "Usage examples",
+        "Do's and Don'ts"
+      ],
+      "figmaFrameName": "Component Documentation Template"
+    }
+}
+

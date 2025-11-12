@@ -1,0 +1,70 @@
+{
+	"version": "v1",
+	"categories": {
+		"validation": "Client input failed validation (missing/invalid format/constraints)",
+		"auth": "Authentication or authorization failure",
+		"conflict": "State conflicts with existing resources",
+		"rate_limit": "Too many requests in a given timeframe",
+		"server": "Unhandled server error",
+		"network": "Connectivity/timeout between client and server"
+	},
+	"errors": [
+		{
+			"code": "VALIDATION_REQUIRED_FIELD",
+			"httpStatus": 400,
+			"category": "validation",
+			"message": "Field '<name>' is required."
+		},
+		{
+			"code": "VALIDATION_INVALID_ENUM",
+			"httpStatus": 400,
+			"category": "validation",
+			"message": "'<name>' must be one of: <allowed>."
+		},
+		{
+			"code": "VALIDATION_OUT_OF_RANGE",
+			"httpStatus": 400,
+			"category": "validation",
+			"message": "'<name>' is out of allowed range."
+		},
+		{
+			"code": "AUTH_UNAUTHORIZED",
+			"httpStatus": 401,
+			"category": "auth",
+			"message": "Authentication required."
+		},
+		{
+			"code": "AUTH_FORBIDDEN",
+			"httpStatus": 403,
+			"category": "auth",
+			"message": "You do not have permission to perform this action."
+		},
+		{
+			"code": "CONFLICT_NAME_EXISTS",
+			"httpStatus": 409,
+			"category": "conflict",
+			"message": "A resource with the same name already exists."
+		},
+		{
+			"code": "RATE_LIMIT_EXCEEDED",
+			"httpStatus": 429,
+			"category": "rate_limit",
+			"message": "Too many requests. Please retry later."
+		},
+		{
+			"code": "SERVER_UNEXPECTED",
+			"httpStatus": 500,
+			"category": "server",
+			"message": "An unexpected error occurred."
+		},
+		{
+			"code": "NETWORK_TIMEOUT",
+			"httpStatus": 504,
+			"category": "network",
+			"message": "The request timed out. Please check your connection and retry."
+		}
+	]
+}
+
+
+

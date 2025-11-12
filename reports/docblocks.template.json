@@ -1,0 +1,15 @@
+{
+  "component": "Card",
+  "intent": "Container for content with optional header, media, and actions",
+  "slots": [
+    { "name": "header", "allowedContent": ["Heading", "Breadcrumbs"], "default": null },
+    { "name": "media", "allowedContent": ["Image", "Avatar"], "default": null },
+    { "name": "body", "allowedContent": ["Text", "List", "FormFields"], "default": "Placeholder text" },
+    { "name": "actions", "allowedContent": ["Button", "Menu"], "default": null }
+  ],
+  "variables": { "theme": "light", "density": "comfortable" },
+  "tokens": ["color/background/base", "radius/md", "spacing/md"],
+  "events": ["onClick"],
+  "codeConnect": "src/components/Card.tsx"
+}
+

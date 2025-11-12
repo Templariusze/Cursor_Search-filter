@@ -1,0 +1,141 @@
+---
+description: Project directory structure and important files reference guide
+globs: **/*
+alwaysApply: true
+---
+
+- **Project Overview**
+  - This is a Search&Filter monorepo containing a Cursor multi-agent workflow system for Figma design audits and a React/TypeScript prototype application
+  - Root package.json defines workspace-level scripts for Figma sync operations
+  - Main application code lives in `prototype/` directory
+
+- **Root Directory Structure**
+  ```
+  Search&Filter/
+  ├── .cursor/rules/          # Cursor rule definitions
+  ├── agents/                  # Multi-agent workflow definitions
+  ├── guides/                  # Setup and usage guides
+  ├── prompts/                 # Style guide and prompts
+  ├── prototype/               # React/TypeScript application
+  ├── reports/                 # Generated reports and templates
+  ├── rules/                   # JSON rule configurations
+  ├── scripts/                 # Utility scripts
+  ├── package.json            # Root workspace config
+  └── README.md               # Project documentation
+  ```
+
+- **`.cursor/rules/` - Cursor Rule Definitions**
+  - [cursor-rules.mdc](mdc:.cursor/rules/cursor-rules.mdc) - Guidelines for creating and maintaining Cursor rules
+  - [self-improvement.mdc](mdc:.cursor/rules/self-improvement.mdc) - Rule improvement and maintenance guidelines
+  - [project-structure.mdc](mdc:.cursor/rules/project-structure.mdc) - This file: directory structure reference
+
+- **`agents/` - Multi-Agent Workflow Definitions**
+  - [MASTER.md](mdc:agents/MASTER.md) - Master agent orchestrator (primary entry point)
+  - [DESIGN.md](mdc:agents/DESIGN.md) - Design rules agent
+  - [WORDING.md](mdc:agents/WORDING.md) - Wording/tone consistency agent
+  - [CHECK.md](mdc:agents/CHECK.md) - UX best practices validation agent
+  - [CODE.md](mdc:agents/CODE.md) - Code expert agent for implementations
+  - [HANDOFF.md](mdc:agents/HANDOFF.md) - Handoff documentation agent
+  - [ACCESSIBILITY.md](mdc:agents/ACCESSIBILITY.md) - A11y review agent
+  - [LOCALIZATION.md](mdc:agents/LOCALIZATION.md) - i18n/translatability agent
+  - [ANALYTICS.md](mdc:agents/ANALYTICS.md) - Analytics event recommendations agent
+  - [MAKE.md](mdc:agents/MAKE.md) - Implementation agent
+  - [SYNC.md](mdc:agents/SYNC.md) - Sync operations agent
+
+- **`prototype/` - React/TypeScript Application**
+  - **Entry Points:**
+    - [index.html](mdc:prototype/index.html) - HTML entry point
+    - [main.tsx](mdc:prototype/src/main.tsx) - React application entry
+    - [App.tsx](mdc:prototype/src/App.tsx) - Main application component
+  
+  - **Components (`prototype/src/components/`):**
+    - [SearchBar.tsx](mdc:prototype/src/components/SearchBar.tsx) - Search input component
+    - [FilterChip.tsx](mdc:prototype/src/components/FilterChip.tsx) - Filter chip component
+    - [KanbanBoard.tsx](mdc:prototype/src/components/KanbanBoard.tsx) - Kanban board container
+    - [KanbanColumn.tsx](mdc:prototype/src/components/KanbanColumn.tsx) - Kanban column component
+    - [KanbanCard.tsx](mdc:prototype/src/components/KanbanCard.tsx) - Kanban card component
+  
+  - **Data (`prototype/src/data/`):**
+    - [sample.ts](mdc:prototype/src/data/sample.ts) - Sample data for prototyping
+  
+  - **Styling:**
+    - [styles.css](mdc:prototype/src/styles.css) - Global styles
+    - [tokens.ts](mdc:prototype/src/tokens.ts) - Design tokens (colors, spacing, etc.)
+  
+  - **Configuration:**
+    - [package.json](mdc:prototype/package.json) - Dependencies and scripts (Vite + React)
+    - [vite.config.ts](mdc:prototype/vite.config.ts) - Vite build configuration
+    - [tsconfig.json](mdc:prototype/tsconfig.json) - TypeScript configuration
+    - [tsconfig.node.json](mdc:prototype/tsconfig.node.json) - TypeScript config for Node scripts
+
+- **`rules/` - JSON Rule Configurations**
+  - [master-rules.json](mdc:rules/master-rules.json) - Designer-first constraints
+  - [design-rules.json](mdc:rules/design-rules.json) - Design token and component rules
+  - [tokens.json](mdc:rules/tokens.json) - Design token definitions
+  - [code-standards.json](mdc:rules/code-standards.json) - Code style and standards
+  - [erp-rules.json](mdc:rules/erp-rules.json) - ERP system constraints
+  - [erp-architecture.json](mdc:rules/erp-architecture.json) - ERP architecture patterns
+  - [ux-best-practices.json](mdc:rules/ux-best-practices.json) - UX validation rules
+  - [a11y-rules.json](mdc:rules/a11y-rules.json) - Accessibility rules
+  - [i18n-rules.json](mdc:rules/i18n-rules.json) - Internationalization rules
+  - [analytics-rules.json](mdc:rules/analytics-rules.json) - Analytics event rules
+  - [component-library.json](mdc:rules/component-library.json) - Component library rules
+  - [figma-design-system.json](mdc:rules/figma-design-system.json) - Figma design system rules
+  - [figma-component-library.json](mdc:rules/figma-component-library.json) - Figma component rules
+  - [handoff-schema.json](mdc:rules/handoff-schema.json) - Handoff documentation schema
+  - [docblocks-schema.json](mdc:rules/docblocks-schema.json) - Documentation block schema
+  - [discussion-rules.json](mdc:rules/discussion-rules.json) - Deliberation mode rules
+  - [error-catalog.json](mdc:rules/error-catalog.json) - Error catalog definitions
+  - `_archive/` - Archived/deprecated rules
+
+- **`reports/` - Generated Reports and Templates**
+  - [component-catalog.md](mdc:reports/component-catalog.md) - Component catalog documentation
+  - [search-filter-design-audit.md](mdc:reports/search-filter-design-audit.md) - Design audit report
+  - [smart-filter-erp-analysis.md](mdc:reports/smart-filter-erp-analysis.md) - ERP analysis report
+  - [smart-filter-implementation-guide.md](mdc:reports/smart-filter-implementation-guide.md) - Implementation guide
+  - [fox-tokens-sync-report.md](mdc:reports/fox-tokens-sync-report.md) - Token sync report
+  - **Templates:**
+    - [ai-handoff.template.json](mdc:reports/ai-handoff.template.json) - AI handoff template
+    - [decision-log.template.md](mdc:reports/decision-log.template.md) - Decision log template
+    - [docblocks.template.json](mdc:reports/docblocks.template.json) - Docblocks template
+    - [figma-audit.template.md](mdc:reports/figma-audit.template.md) - Figma audit template
+    - [vibe-sprint.template.md](mdc:reports/vibe-sprint.template.md) - Sprint template
+  - `ai-handoff/` - Generated AI handoff files (empty directory)
+
+- **`guides/` - Setup and Usage Guides**
+  - [design-system-quick-reference.md](mdc:guides/design-system-quick-reference.md) - Design system reference
+  - [figma-component-library-setup.md](mdc:guides/figma-component-library-setup.md) - Figma setup guide
+  - [figma-sync-guide.md](mdc:guides/figma-sync-guide.md) - Figma sync instructions
+  - [fox-token-library-usage.md](mdc:guides/fox-token-library-usage.md) - Token library usage
+  - [sync-now-instructions.md](mdc:guides/sync-now-instructions.md) - Sync instructions
+
+- **`scripts/` - Utility Scripts**
+  - [figma-sync-agent.mjs](mdc:scripts/figma-sync-agent.mjs) - Figma sync automation script (executable)
+  - [extract-fox-tokens.md](mdc:scripts/extract-fox-tokens.md) - Token extraction guide
+  - [sync-fox-tokens.md](mdc:scripts/sync-fox-tokens.md) - Token sync guide
+
+- **`prompts/` - Style Guides and Prompts**
+  - [style-guide.md](mdc:prompts/style-guide.md) - Brand voice and wording rules
+
+- **Root Configuration Files**
+  - [package.json](mdc:package.json) - Workspace configuration with sync scripts
+  - [README.md](mdc:README.md) - Project documentation and quick start guide
+
+- **Important File Patterns**
+  - **Agent Definitions:** All agent workflows are in `agents/*.md` files
+  - **Rule Configurations:** All JSON rule files are in `rules/*.json`
+  - **Component Source:** React components are in `prototype/src/components/*.tsx`
+  - **Design Tokens:** Tokens defined in `prototype/src/tokens.ts` and `rules/tokens.json`
+  - **Reports:** Generated reports go in `reports/` directory
+  - **Templates:** Template files use `.template.*` extension pattern
+
+- **Development Workflow**
+  - **Prototype Development:** Work in `prototype/` directory, run `npm run dev` from prototype folder
+  - **Figma Sync:** Use `npm run sync:check` or `npm run sync:apply` from root
+  - **Agent Workflows:** Start with [MASTER.md](mdc:agents/MASTER.md) for design audits
+  - **Rule Updates:** Modify JSON files in `rules/` directory, update corresponding `.mdc` rules in `.cursor/rules/`
+
+- **Key Dependencies**
+  - **Prototype:** React 18, TypeScript, Vite
+  - **Root:** Node.js >=18, Figma MCP integration (via Cursor)
+  - **No external services required** - relies on Cursor chat + Figma MCP

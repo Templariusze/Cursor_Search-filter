@@ -1,0 +1,35 @@
+{
+  "principles": [
+    "Favor efficiency for expert users (keyboard, batch actions).",
+    "Maintain high information density where appropriate (tables, filters).",
+    "Ensure deterministic behavior; avoid unexpected auto-changes.
+    ",
+    "Respect roles/permissions; labels should reflect access.",
+    "Support error prevention and recovery (confirm, undo where safe).",
+    "Preserve auditability; changes should be traceable.",
+    "Use precise terminology consistent with domain vocabulary."
+  ],
+  "patterns": {
+    "tables": [
+      "Sortable, filterable, and paginated with clear affordances.",
+      "Bulk selection with clear actions and confirmation for destructive ops.",
+      "Keyboard navigation for rows and cells where possible."
+    ],
+    "forms": [
+      "Group related fields; show required vs optional.",
+      "Provide inline validation and clear error messages.",
+      "Allow save without navigating away (stay on page)."
+    ],
+    "filters": [
+      "Advanced filters available without hiding critical options.",
+      "Persist last-used filters per user when possible.",
+      "Show applied filters clearly with easy removal."
+    ]
+  },
+  "terminology": {
+    "preferred": ["Save", "Apply filters", "Export", "Approve", "Post", "Reconcile"],
+    "avoid": ["Stuff", "Things", "Magic", "Go"],
+    "notes": "Use domain-specific nouns; avoid consumer app slang."
+  }
+}
+

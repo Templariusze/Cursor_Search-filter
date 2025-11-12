@@ -1,0 +1,19 @@
+{
+  "naming": {
+    "case": "snake",
+    "pattern": "<object>_<action>"
+  },
+  "coverage": [
+    "primary actions (apply, save, export)",
+    "critical errors",
+    "empty states"
+  ],
+  "props": {
+    "keepMinimal": true,
+    "avoidPii": true
+  },
+  "funnels": {
+    "saved_search": ["open_filters", "filter_apply", "saved_search_create"]
+  }
+}
+

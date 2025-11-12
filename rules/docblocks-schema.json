@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Design DocBlocks Schema",
+  "type": "object",
+  "properties": {
+    "component": { "type": "string", "description": "Component name" },
+    "intent": { "type": "string", "description": "Short design intent" },
+    "slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "enum": ["header", "media", "body", "footer", "actions"] },
+          "allowedContent": { "type": "array", "items": { "type": "string" } },
+          "default": { "type": ["string", "null"] }
+        },
+        "required": ["name"]
+      }
+    },
+    "variables": {
+      "type": "object",
+      "properties": {
+        "theme": { "type": "string", "enum": ["light", "dark"] },
+        "density": { "type": "string", "enum": ["comfortable", "compact"] }
+      }
+    },
+    "tokens": { "type": "array", "items": { "type": "string" } },
+    "events": { "type": "array", "items": { "type": "string" }, "description": "e.g., onClick, onSelect" },
+    "codeConnect": { "type": "string", "description": "Code path mapping" }
+  },
+  "required": ["component", "intent"],
+  "additionalProperties": true
+}
+

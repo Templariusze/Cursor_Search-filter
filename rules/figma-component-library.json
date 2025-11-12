@@ -1,0 +1,38 @@
+{
+  "source": {
+    "figmaFile": "FOX Design System",
+    "figmaLink": "https://www.figma.com/design/HNuKSznP1b7pZWMUVidugb/FOX-Design-Tokens",
+    "lastSynced": null,
+    "syncedBy": "SyncAgent"
+  },
+  "components": {
+    "note": "Components will be synced from FOX Design System Figma file",
+    "structure": {
+      "namingConvention": "FOX component naming (to be extracted)",
+      "variantProperties": "FOX variant structure (to be extracted)",
+      "componentSets": "FOX component sets (to be extracted)"
+    }
+  },
+  "syncInstructions": {
+    "step1": "Provide Figma link to FOX Component Library",
+    "step2": "Run SyncAgent with: 'Sync components from: @[figma-link]'",
+    "step3": "Agent will extract component definitions",
+    "step4": "Components will be mapped to component-library.json structure"
+  },
+  "componentMapping": {
+    "note": "How FOX components map to local component structure",
+    "examples": {
+      "comment": "Examples will be populated after sync"
+    }
+  },
+  "validation": {
+    "note": "Components validated against FOX structure",
+    "checks": [
+      "Component uses FOX variables",
+      "Component follows FOX naming convention",
+      "Component variants match FOX structure",
+      "Component states match FOX patterns"
+    ]
+  }
+}
+

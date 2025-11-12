@@ -1,0 +1,30 @@
+{
+  "contrast": {
+    "focusMinRatio": 3.0,
+    "bodyMinRatio": 4.5,
+    "largeMinRatio": 3.0
+  },
+  "keyboard": {
+    "logicalTabOrder": true,
+    "noFocusTraps": true,
+    "escapeToCloseOverlays": true
+  },
+  "focus": {
+    "visibleOnAllInteractives": true,
+    "distinctFromHover": true
+  },
+  "semantics": {
+    "clearAffordances": true,
+    "descriptiveLabels": true,
+    "statusFeedback": true
+  },
+  "errors": {
+    "inlineMessages": true,
+    "associations": true,
+    "recoveryGuidance": true
+  },
+  "color": {
+    "notColorOnly": true
+  }
+}
+
